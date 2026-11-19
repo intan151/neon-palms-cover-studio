@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Palms Cover Studio — GTA 6-style cover maker</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">NP</span>
+    <div>
+      <h1>Neon Palms Cover Studio</h1>
+      <p>Turn your photo into a multi-panel Vice City sunset cover</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="sampleBtn" class="btn ghost" type="button">Load sample scene</button>
+    <button id="exportAllBtn" class="btn primary" type="button">Export all three sizes</button>
+  </div>
+</header>
+
+<main class="studio">
+  <section class="preview-col" aria-label="Cover preview">
+    <div class="preview-frame" id="previewFrame">
+      <canvas id="preview" width="900" height="900"></canvas>
+      <div class="preview-hint" id="previewHint">Click a panel to select it, then drag to move the photo inside it</div>
+    </div>
+    <div class="size-row" role="group" aria-label="Export size">
+      <button class="size-chip is-active" data-size="1080x1080" type="button">Square · 1080 × 1080</button>
+      <button class="size-chip" data-size="1080x1350" type="button">Portrait · 1080 × 1350</button>
+      <button class="size-chip" data-size="1920x1080" type="button">Wide · 1920 × 1080</button>
+    </div>
+    <div class="export-row">
+      <button id="exportBtn" class="btn primary big" type="button">Export PNG</button>
+      <span class="export-note" id="exportNote">Exports the cover at the selected size.</span>
+    </div>
+  </section>
+
+  <aside class="controls" aria-label="Cover controls">
+    <section class="card">
+      <h2>1 · Photos</h2>
+      <p class="card-sub">Your photos never leave this machine. Add up to four — each panel can use its own.</p>
+      <div class="photo-actions">
+        <label class="btn" for="photoInput">Add photos…</label>
+        <input id="photoInput" type="file" accept="image/*" multiple hidden>
+        <button id="clearPhotosBtn" class="btn ghost" type="button">Clear</button>
+      </div>
+      <div class="thumbs" id="thumbs"></div>
+      <p class="mini-label">Click a thumbnail to put that photo in the selected panel.</p>
+    </section>
+
+    <section class="card">
+      <h2>2 · Layout</h2>
+      <div class="layout-grid" id="layoutGrid"></div>
+    </section>
+
+    <section class="card">
+      <h2>3 · Grade</h2>
+      <div class="grade-row" id="gradeRow"></div>
+      <label class="check"><input type="checkbox" id="frameToggle" checked> White poster frame</label>
+      <label class="check"><input type="checkbox" id="grainToggle" checked> Film grain</label>
+      <label class="check"><input type="checkbox" id="vignetteToggle" checked> Vignette</label>
+      <label class="check"><input type="checkbox" id="halftoneToggle"> Halftone dots</label>
+    </section>
+
+    <section class="card">
+      <h2>4 · Caption</h2>
+      <label class="field">Title
+        <input id="titleInput" type="text" value="NEON PALMS" maxlength="40" autocomplete="off">
+      </label>
+      <label class="field">Subtitle
+        <input id="subtitleInput" type="text" value="a vice city story" maxlength="60" autocomplete="off">
+      </label>
+      <label class="field">Tagline
+        <input id="taglineInput" type="text" value="WELCOME TO PARADISE" maxlength="40" autocomplete="off">
+      </label>
+      <div class="swatch-row" id="titleColors" aria-label="Title colour"></div>
+      <div class="segmented" role="group" aria-label="Title position">
+        <button class="seg is-active" data-pos="bottom" type="button">Title at bottom</button>
+        <button class="seg" data-pos="top" type="button">Title at top</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>5 · Selected panel</h2>
+      <p class="card-sub" id="panelLabel">Panel 1 of 4</p>
+      <label class="field">Zoom
+        <input id="zoomSlider" type="range" min="1" max="2.5" step="0.01" value="1.15">
+      </label>
+      <div class="panel-btns">
+        <button id="fitBtn" class="btn ghost" type="button">Fit photo</button>
+        <button id="fillBtn" class="btn ghost" type="button">Fill panel</button>
+      </div>
+    </section>
+  </aside>
+</main>
+
+<footer class="foot">
+  <p>Neon Palms Cover Studio — an original offline tool. No Rockstar logo, artwork or fonts; lettering uses your system condensed fonts only. Photos stay on your machine.</p>
+</footer>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
